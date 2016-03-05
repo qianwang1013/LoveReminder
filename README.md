@@ -16,7 +16,9 @@ Lin Zhou|ZhouLin1992
 
 **LoveReminder** - has a Web component as well as an Android component.
 
-   *Web Interface* - using [Meanjs] (http://meanjs.org/) for quickly setup the backend logic and easily communicate with the data storage. 
+   *Web Interface* 
+   
+   using [Meanjs] (http://meanjs.org/) for quickly setup the backend logic and easily communicate with the data storage. 
 
    *Android Interface*
 
