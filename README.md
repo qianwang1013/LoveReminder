@@ -18,7 +18,7 @@ Lin Zhou|ZhouLin1992
 
    *Web Interface* 
    
-   using [Meanjs] (http://meanjs.org/) for quickly setup the backend logic and easily communicate with the data storage. 
+   1. using [Meanjs] (http://meanjs.org/) for quickly setup the backend logic and easily communicate with the data storage. 
 
    *Android Interface*
 
