@@ -16,15 +16,15 @@ Lin Zhou|ZhouLin1992
 
 **LoveReminder** - has a Web component as well as an Android component.
 
- *Web Interface* 
+    *Web Interface* 
    
-   1. using [Meanjs] (http://meanjs.org/) for quickly setup the backend logic and easily communicate with the data storage. 
-
- *Android Interface*
+    1. using [Meanjs] (http://meanjs.org/) for quickly setup the backend logic and easily communicate with the data storage. 
 
 
-   1. [Estimote SDK for Android] (https://github.com/estimote/android-sdk#quick-start-for-eddystone) for setup and register [Beacons] (https://developers.google.com/beacons/)
-   2. [Nearby Messages API] (https://developers.google.com/nearby/messages/overview) for exchange data between beacons
+    *Android Interface*
+
+    1. [Estimote SDK for Android] (https://github.com/estimote/android-sdk#quick-start-for-eddystone) for setup and register [Beacons] (https://developers.google.com/beacons/)
+    2. [Nearby Messages API] (https://developers.google.com/nearby/messages/overview) for exchange data between beacons
 
 **Proposal**
 -----------------------
