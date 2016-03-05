@@ -1,8 +1,6 @@
 # Team CiCi
-LoveReminder Dating App
-======================
-
 ![Home Page](https://raw.githubusercontent.com/qianwang1013/LoveReminder/master/LoveReminder_Mobile/app/src/main/res/drawable/1.JPG)
+======================
 
 Team Member Information
 
