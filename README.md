@@ -2,7 +2,7 @@
 LoveReminder Dating App
 ======================
 
-![Home Page](http://i.gyazo.com/fbc754bc3f1e76d172501bff557aab4f.png)
+![Home Page](https://raw.githubusercontent.com/qianwang1013/LoveReminder/master/LoveReminder_Mobile/app/src/main/res/drawable/1.JPG)
 
 Team Member Information
 
