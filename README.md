@@ -2,6 +2,8 @@
 LoveReminder Dating App
 ======================
 
+![Home Page](http://i.gyazo.com/fbc754bc3f1e76d172501bff557aab4f.png)
+
 Team Member Information
 
 **Members**|**Username**
