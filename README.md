@@ -1,5 +1,5 @@
 # Team CiCi
-![Home Page](https://raw.githubusercontent.com/qianwang1013/LoveReminder/master/LoveReminder_Mobile/app/src/main/res/drawable/1.JPG)
+![Home Page](https://raw.githubusercontent.com/qianwang1013/LoveReminder/master/LoveReminder_Mobile/app/src/main/res/drawable/lovelogo.jpg)
 ======================
 
 Team Member Information
