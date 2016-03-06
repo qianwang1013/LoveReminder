@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.estimote.sdk.BeaconManager;
@@ -37,11 +39,13 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
     private MessageListener mMessageListener;
     private static String TAG = "Test";
     private boolean mResolvingError = false;
+    private Button mButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         beaconManger = new BeaconManager(this);
         setContentView(R.layout.activity_main);
+        mButton = (Button) findViewById(R.id.publish_button);
 
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addApi(Nearby.MESSAGES_API)
@@ -66,7 +70,12 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
             }
         };
 
-
+        mButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                publish();
+            }
+        });
 
 /*        Uri uriUrl = Uri.parse("http://10.0.2.2:3000");
         Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
@@ -231,7 +240,8 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
             Log.d(TAG,"Google_Api_Client: It was NOT connected on (onConnected) function, It is definetly bugged.");
         }
         Nearby.Messages.getPermissionStatus(mGoogleApiClient);
-        publish();
+        subscribe();
+
     }
 
 
