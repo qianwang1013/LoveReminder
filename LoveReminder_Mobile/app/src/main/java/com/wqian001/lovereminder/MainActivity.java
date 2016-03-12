@@ -89,6 +89,7 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
             }
         });
 
+//     new Beacon(mac, uuid, **, **);
 /*        Uri uriUrl = Uri.parse("http://10.0.2.2:3000");
         Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
         startActivity(launchBrowser);*/
