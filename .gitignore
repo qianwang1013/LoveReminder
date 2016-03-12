@@ -1,0 +1,16 @@
+LoveReminder_Mobile/.gradle
+LoveReminder_Mobile/local.properties
+LoveReminder_Mobile/.idea/workspace.xml
+LoveReminder_Mobile/.idea/libraries
+LoveReminder_Mobile/.DS_Store
+LoveReminder_Mobile/build
+LoveReminder_Mobile/captures
+LoveReminder_web/.DS_Store
+LoveReminder_web/.nodemonignore
+LoveReminder_web/.sass-cache/
+LoveReminder_web/npm-debug.log
+LoveReminder_web/node_modules/
+LoveReminder_web/public/lib
+LoveReminder_web/app/tests/coverage/
+LoveReminder_web/.bower-*/
+LoveReminder_web/.idea/

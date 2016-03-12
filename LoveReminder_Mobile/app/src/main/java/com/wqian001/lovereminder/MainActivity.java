@@ -1,19 +1,26 @@
 package com.wqian001.lovereminder;
 
 import android.app.Activity;
+import android.bluetooth.BluetoothManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.net.Uri;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.estimote.sdk.BeaconManager;
 import com.estimote.sdk.Beacon;
+import com.estimote.sdk.MacAddress;
+import com.estimote.sdk.internal.utils.EstimoteBeacons;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -26,6 +33,8 @@ import com.google.android.gms.nearby.messages.PublishCallback;
 import com.google.android.gms.nearby.messages.PublishOptions;
 import com.google.android.gms.nearby.messages.SubscribeCallback;
 import com.google.android.gms.nearby.messages.SubscribeOptions;
+
+import java.util.UUID;
 
 // nearby API
 //  AIzaSyBBBNb-mJ1b0Eztr0W2c9Y-oIaPChK8oJs
@@ -40,12 +49,15 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
     private static String TAG = "Test";
     private boolean mResolvingError = false;
     private Button mButton;
+    private TextView tv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         beaconManger = new BeaconManager(this);
         setContentView(R.layout.activity_main);
         mButton = (Button) findViewById(R.id.publish_button);
+        tv = (TextView) findViewById(R.id.textview);
+
 
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addApi(Nearby.MESSAGES_API)
@@ -58,7 +70,7 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
             @Override
             public void onFound(final Message message) {
                 final String nearbyMessageString = new String(message.getContent());
-
+                tv.setText("Matched");
                 // Do something with the message string.
                 Log.i(TAG, nearbyMessageString);
             }
@@ -80,6 +92,8 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
 /*        Uri uriUrl = Uri.parse("http://10.0.2.2:3000");
         Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
         startActivity(launchBrowser);*/
+
+
     }
 
     @Override
@@ -87,6 +101,17 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
         super.onStart();
         mGoogleApiClient.connect();
         Log.d(TAG, "Something");
+        BluetoothManager manager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
+        // making soft beacon
+        // UUID, the unique identification for beacon
+        // Major & Minor further trying to identify the beacon
+        // measuredPower && RSSI( Recived Signal Strength Indicator ) determine the signal range and Signal Strength
+        UUID tmp_id = UUID.randomUUID();
+        Log.d(TAG, tmp_id.toString());
+        Beacon tmp =  new Beacon(tmp_id, MacAddress.fromString(manager.getAdapter().getAddress()), 0,0,0,0);
+
+
+
     }
 
     @Override
