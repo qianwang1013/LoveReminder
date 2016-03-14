@@ -1,14 +1,13 @@
 package com.wqian001.lovereminder;
 
+import android.accounts.AccountManager;
 import android.app.Activity;
 import android.bluetooth.BluetoothManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
-import android.net.Uri;
-import android.net.wifi.WifiInfo;
-import android.net.wifi.WifiManager;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,10 +16,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.estimote.sdk.BeaconManager;
-import com.estimote.sdk.Beacon;
-import com.estimote.sdk.MacAddress;
-import com.estimote.sdk.internal.utils.EstimoteBeacons;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -33,16 +28,16 @@ import com.google.android.gms.nearby.messages.PublishCallback;
 import com.google.android.gms.nearby.messages.PublishOptions;
 import com.google.android.gms.nearby.messages.SubscribeCallback;
 import com.google.android.gms.nearby.messages.SubscribeOptions;
+import com.google.api.services.proximitybeacon.v1beta1.model.Beacon;
 
+import java.nio.ByteBuffer;
 import java.util.UUID;
-
+import org.apache.commons.codec.binary.Base64.*;
 // nearby API
 //  AIzaSyBBBNb-mJ1b0Eztr0W2c9Y-oIaPChK8oJs
 public class MainActivity extends Activity implements GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener{
 
-    private BeaconManager beaconManger;
-    private Beacon myBeacon;
     private GoogleApiClient mGoogleApiClient;
     private Message mDeviceInfoMessage;
     private MessageListener mMessageListener;
@@ -50,14 +45,13 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
     private boolean mResolvingError = false;
     private Button mButton;
     private TextView tv;
+    private Oauth oauth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        beaconManger = new BeaconManager(this);
         setContentView(R.layout.activity_main);
         mButton = (Button) findViewById(R.id.publish_button);
         tv = (TextView) findViewById(R.id.textview);
-
 
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addApi(Nearby.MESSAGES_API)
@@ -100,6 +94,7 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
     @Override
     public void onStart(){
         super.onStart();
+        this.oauth = new Oauth(this);
         mGoogleApiClient.connect();
         Log.d(TAG, "Something");
         BluetoothManager manager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
@@ -108,9 +103,14 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
         // Major & Minor further trying to identify the beacon
         // measuredPower && RSSI( Recived Signal Strength Indicator ) determine the signal range and Signal Strength
         UUID tmp_id = UUID.randomUUID();
-        Log.d(TAG, tmp_id.toString());
-        Beacon tmp =  new Beacon(tmp_id, MacAddress.fromString(manager.getAdapter().getAddress()), 0,0,0,0);
-
+        //Beacon tmp =  new Beacon(tmp_id, MacAddress.fromString(manager.getAdapter().getAddress()), 0,0,0,0);
+        org.apache.commons.codec.binary.Base64 tmp = new org.apache.commons.codec.binary.Base64();
+        Log.d(TAG, "Base64: " );
+        byte[] tmp2 = tmp.encodeBase64(tmp.toString().getBytes());
+        for(byte i : tmp2){
+            Log.d(TAG, String.format("0x%02X", i));
+        }
+        Log.d(TAG, "Length :" + tmp2.length );
 
 
     }
@@ -293,6 +293,15 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
                         Toast.LENGTH_LONG).show();
                 }
             }
+        else if(requestCode == Constant.REQUEST_PICK_ACCOUNT){
+            // getting the actual Pick Acount Result
+            if(resultCode == RESULT_OK){
+                String email = data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
+                // now we have the account name go get the auth token
+                String token = oauth.getToken(email);
+
+            }
         }
+    }
 
     }

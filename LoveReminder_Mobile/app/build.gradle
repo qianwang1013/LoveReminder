@@ -21,6 +21,8 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar']);
-    compile 'com.estimote:sdk:0.9.4@aar';
-    compile 'com.google.android.gms:play-services-nearby:8.4.0'
+    compile 'com.google.android.gms:play-services-nearby:8.4.0';
+    compile 'commons-codec:commons-codec:1.10';
+    compile 'com.google.apis:google-api-services-proximitybeacon:v1beta1-rev2-1.21.0'
 }
+
