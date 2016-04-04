@@ -1,13 +1,13 @@
 package com.wqian001.lovereminder;
 
+import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.app.Activity;
-import android.bluetooth.BluetoothManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.os.Bundle;
-import android.util.Base64;
+
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.estimote.sdk.Beacon;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -28,13 +29,8 @@ import com.google.android.gms.nearby.messages.PublishCallback;
 import com.google.android.gms.nearby.messages.PublishOptions;
 import com.google.android.gms.nearby.messages.SubscribeCallback;
 import com.google.android.gms.nearby.messages.SubscribeOptions;
-import com.google.api.services.proximitybeacon.v1beta1.model.Beacon;
+import com.google.api.client.googleapis.extensions.android.accounts.GoogleAccountManager;
 
-import java.nio.ByteBuffer;
-import java.util.UUID;
-import org.apache.commons.codec.binary.Base64.*;
-// nearby API
-//  AIzaSyBBBNb-mJ1b0Eztr0W2c9Y-oIaPChK8oJs
 public class MainActivity extends Activity implements GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener{
 
@@ -46,6 +42,7 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
     private Button mButton;
     private TextView tv;
     private Oauth oauth;
+    //private Beacon mBeacon;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,21 +94,20 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
         this.oauth = new Oauth(this);
         mGoogleApiClient.connect();
         Log.d(TAG, "Something");
-        BluetoothManager manager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
         // making soft beacon
         // UUID, the unique identification for beacon
         // Major & Minor further trying to identify the beacon
         // measuredPower && RSSI( Recived Signal Strength Indicator ) determine the signal range and Signal Strength
-        UUID tmp_id = UUID.randomUUID();
+        //UUID tmp_id = UUID.randomUUID();
         //Beacon tmp =  new Beacon(tmp_id, MacAddress.fromString(manager.getAdapter().getAddress()), 0,0,0,0);
-        org.apache.commons.codec.binary.Base64 tmp = new org.apache.commons.codec.binary.Base64();
-        Log.d(TAG, "Base64: " );
-        byte[] tmp2 = tmp.encodeBase64(tmp.toString().getBytes());
-        for(byte i : tmp2){
-            Log.d(TAG, String.format("0x%02X", i));
-        }
-        Log.d(TAG, "Length :" + tmp2.length );
 
+
+//        EstimoteBeacon mBeacon = new EstimoteBeacon(this);
+//        String myAddress = mBeacon.getmBeacon().getMacAddress().toStandardString();
+//        tv.setText(myAddress);
+
+        //EstimoteBeacon estimoteBeacon = new EstimoteBeacon(this);
+        //this.mBeacon = estimoteBeacon.getmBeacon();
 
     }
 
@@ -297,9 +293,14 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
             // getting the actual Pick Acount Result
             if(resultCode == RESULT_OK){
                 String email = data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
+                GoogleAccountManager accountManager = new GoogleAccountManager(this);
+                Account account = accountManager.getAccountByName(email);
+                //Log.d(TAG, account.toString());
                 // now we have the account name go get the auth token
-                String token = oauth.getToken(email);
-
+                String token = oauth.getToken(account, this);
+                //String response = new ProximityBeacon(this, "AIzaSyDRbSRBpvBsdz3dromGLFxod42ezSzNwdc").registerBeacon();
+                //Log.d(TAG, response);
+                tv.setText( token );
             }
         }
     }

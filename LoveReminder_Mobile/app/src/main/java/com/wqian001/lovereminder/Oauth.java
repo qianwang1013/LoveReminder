@@ -1,5 +1,6 @@
 package com.wqian001.lovereminder;
 
+import android.accounts.Account;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +13,7 @@ import com.google.android.gms.auth.UserRecoverableAuthException;
 import com.google.android.gms.common.AccountPicker;
 
 import java.io.IOException;
+import java.util.concurrent.ExecutionException;
 
 /**
  * Created by qian on 3/13/2016.
@@ -24,6 +26,7 @@ public class Oauth{
 
     public Oauth(Context context){
         this.context = context;
+        pickUserAccount();
     }
     private void pickUserAccount() {
         String[] accountTypes = new String[]{"com.google"};
@@ -33,19 +36,28 @@ public class Oauth{
     }
 
     // must be Async Task
-    public String getToken(String Email){
-        new Token().execute(Email);
-        return Token;
+    public String getToken(Account account, Context context){
+        String str = "";
+        this.context = context;
+        try{
+            str = new Token().execute(account).get();
+        }
+        catch(InterruptedException e){
+            e.printStackTrace();
+        }
+        catch(ExecutionException e){
+            e.printStackTrace();
+        }
+        return str;
     }
 
     private void setToken(String Token){
         this.Token = Token;
     }
 
-    private class Token extends AsyncTask<String, Void, String>{
-
+    private class Token extends AsyncTask<Account, Void, String>{
         @Override
-        protected String doInBackground(String... para){
+        protected String doInBackground(Account... para){
             String Token = null;
             try{
                 Token = fetchToken(para[0]);
@@ -64,19 +76,28 @@ public class Oauth{
 
         }
 
-        private String fetchToken(String email) throws IOException {
+        private String fetchToken(Account account) throws IOException {
+            String str = "";
             try {
                 //Attempt to get an OAuth token from Play Services
-                return GoogleAuthUtil.getToken(context, email, Constant.beacons_register);
+                str =  GoogleAuthUtil.getToken(context, account, "oauth2:profile email");
             } catch (UserRecoverableAuthException e) {
                 // User hasn't granted permission yet. Show the permission dialog.
                 Intent intent = ((UserRecoverableAuthException) e).getIntent();
                 ( (Activity) context).startActivityForResult(intent, Constant.REQUEST_ERROR_RECOVER);
             } catch (GoogleAuthException e) {
-                Log.w(TAG, "Fatal Exception", e);
+                Log.d(TAG, "Fatal Exception", e);
             }
-            return null;
+             catch (IOException ioEx) {
+                 Log.d(TAG, "transient error encountered: " + ioEx.getMessage());
+            }
+            catch(Exception e){
+                Log.d(TAG, e.getMessage());
+            }
+            return str;
         }
+
+
 
 
 
