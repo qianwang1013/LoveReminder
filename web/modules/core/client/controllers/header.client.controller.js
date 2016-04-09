@@ -17,6 +17,10 @@
 
     $scope.$on('$stateChangeSuccess', stateChangeSuccess);
 
+    $('.button-collapse').sideNav();
+    $('.fixed-action-btn').openFAB();
+    $('.fixed-action-btn').closeFAB();
+
     function stateChangeSuccess() {
       // Collapsing the menu after navigation
       vm.isCollapsed = false;

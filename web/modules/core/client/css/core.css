@@ -41,3 +41,43 @@ a:hover .header-profile-image {
 .has-error .help-inline.error-text {
   display: inline;
 }
+
+.logo-text {
+  font-family: 'Arvo';
+}
+/*Sets Background Landing Page Properties*/
+.landing_img {
+    background: url(../img/landing_kairos.jpg);
+    position: fixed;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(0%);
+    background-size: cover;
+}
+.landing-text {
+  font-family: 'Arvo';
+  font-size: 200%;
+  color: #fff;
+  background-color: #6453B3;
+  position: absolute;
+  top: 300px;
+  left: 25%;
+  width: 80%;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+.fab-login-text {
+  font-family: 'Arvo';
+  font-size: 100%;
+  color: #fff;
+  background-color: #6453B3;
+  text-align: center;
+}
