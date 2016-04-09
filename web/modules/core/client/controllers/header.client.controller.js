@@ -6,7 +6,6 @@
     .controller('HeaderController', HeaderController);
 
   HeaderController.$inject = ['$scope', '$state', 'Authentication', 'menuService'];
-
   function HeaderController($scope, $state, Authentication, menuService) {
     var vm = this;
 
@@ -15,6 +14,7 @@
     vm.isCollapsed = false;
     vm.menu = menuService.getMenu('topbar');
 
+    console.log(vm.authentication.user + 'here');
     $scope.$on('$stateChangeSuccess', stateChangeSuccess);
 
     $('.button-collapse').sideNav();

@@ -1,13 +1,13 @@
 'use strict';
 
 var defaultEnvConfig = require('./default');
-
+process.env.MONGOLAB_URI = 'mongodb://<amak07>:<pancakes07>@ds019940.mlab.com:19940/kairos';
 module.exports = {
   db: {
     uri: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://' + (process.env.DB_1_PORT_27017_TCP_ADDR || 'localhost') + '/mean-dev',
     options: {
-      user: '',
-      pass: ''
+      user: 'amak07',
+      pass: 'pancakes07'
     },
     // Enable mongoose debug mode
     debug: process.env.MONGODB_DEBUG || false
@@ -35,8 +35,8 @@ module.exports = {
     title: defaultEnvConfig.app.title + ' - Development Environment'
   },
   facebook: {
-    clientID: process.env.FACEBOOK_ID || 'APP_ID',
-    clientSecret: process.env.FACEBOOK_SECRET || 'APP_SECRET',
+    clientID: process.env.FACEBOOK_ID || '136108493453607',
+    clientSecret: process.env.FACEBOOK_SECRET || '6433edee52b910c53ea9d3148cf64103',
     callbackURL: '/api/auth/facebook/callback'
   },
   twitter: {

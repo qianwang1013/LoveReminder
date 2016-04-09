@@ -7,9 +7,33 @@
 
   <div class="row">
     <div class="fixed-action-btn horizontal click-to-toggle" style="top: 100px; right: 25px;">
-      <a ui-sref="authentication.signin" class="btn-floating btn-large" style="background-color: #6453B3;">
+      <!--  Modal Trigger -->
+      <a href="#login" class="btn-floating btn-large modal-trigger waves-effect waves-light" style="background-color: #6453B3;">
         <i class="large material-icons">vpn_key</i>
       </a>
     </div>
   </div>
+
+    <!-- Modal Structure -->
+    <div id="login" class="modal modal-fixed-footer" style="background-color: #fff;">
+      <div class="modal-content" style="background-color: #6d1b92; color: white; font-family: 'Arvo';">
+        <div class="row text-center">
+          <h4>welcome!</h4>
+        </div>
+        <hr />
+        <p style="font-size: 120%">kai·ros: <i>noun.</i> ancient Greek word for a destined meeting or opportune connection.</p>
+        <br />
+        <p style="font-size: 120%">
+          kairos seeks to connect people and form new relationships by matching users by interests, hobbies, and dreams.
+          use kairos to meet new friends, to find new love, or to simply have a great conversation! kairos uses the
+          awesome power of Google to do this - all you need is a simple Gmail account to get started!
+        </p>
+      </div>
+      <div class="modal-footer">
+        <div class="row">
+          <a ui-sref="authentication.signup" class="modal-action modal-close waves-effect waves-light btn" style="background-color: #7c921b; margin-left: 2px; margin-right: 20px;">Sign Up</a>
+          <a ui-sref="authentication.signin" class="modal-action modal-close waves-effect waves-light btn" style="background-color: #1b4092; margin-right: 2px;">Sign In</a>
+        </div>
+      </div>
+    </div>
 </section>

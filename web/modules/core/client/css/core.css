@@ -51,22 +51,22 @@ nav .brand-logo {
   font-size: 2.5rem;
 }
 nav {
-    height: 80px;
-    line-height: 80px;
+  height: 80px;
+  line-height: 80px;
 }
 nav i, nav [class^="mdi-"], nav [class*="mdi-"], nav i.material-icons {
-    height: 80px;
-    line-height: 80px;
+  height: 80px;
+  line-height: 80px;
 }
 nav .button-collapse i {
-    height: 80px;
-    line-height: 80px;
+  height: 80px;
+  line-height: 80px;
 }
 @media only screen and (min-width: 601px){
-    nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
-        height: 80px;
-        line-height: 80px;
-    }
+  nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
+    height: 80px;
+    line-height: 80px;
+  }
 }
 
 /*landing page on home.html*/
@@ -97,4 +97,8 @@ nav .button-collapse i {
   text-align: center;
   text-decoration: none;
   display: inline-block;
+}
+a:hover, a:focus {
+    color: #fff;
+    text-decoration: none;
 }

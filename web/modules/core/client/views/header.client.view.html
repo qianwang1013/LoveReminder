@@ -1,20 +1,21 @@
 <div ng-controller="HeaderController as vm">
-
   <nav>
     <div class="nav-wrapper indigo darken-4">
       <a ui-sref="home" class="brand-logo waves-effect waves-light logo-text">kairos</a>
-      <div ng-if="item.shouldRender(vm.authentication.user);">
-        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+      <div>
+        <a href="#" data-activates="mobile-demo" ng-show="vm.authentication.user" class="button-collapse" style="margin-left= 20px;"><i class="material-icons">menu</i></a>
         <ul class="side-nav" id="mobile-demo">
-          <li><a href="sass.html">Sass</a></li>
+          <li><a href="/api/auth/signout" target="_self">Sign Out</a></li>
           <li><a href="badges.html">Abel</a></li>
           <li><a href="collapsible.html">Javascript</a></li>
           <li><a href="mobile.html">Mobile</a></li>
+          <li>
+            <label ng-bind="vm.authentication.user.displayName"></label>
+          </li>
         </ul>
       </div>
     </div>
   </nav>
-
   <!-- <div class="navbar-header">
     <button class="navbar-toggle" type="button" ng-click="vm.isCollapsed = !vm.isCollapsed">
       <span class="sr-only">Toggle navigation</span>
