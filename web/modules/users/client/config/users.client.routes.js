@@ -11,6 +11,8 @@
   function routeConfig($stateProvider) {
     // Users state routing
     $stateProvider
+
+      // settings
       .state('settings', {
         abstract: true,
         url: '/settings',
@@ -57,6 +59,9 @@
           pageTitle: 'Settings picture'
         }
       })
+
+
+      // login
       .state('authentication', {
         abstract: true,
         url: '/authentication',
@@ -82,6 +87,9 @@
           pageTitle: 'Signin'
         }
       })
+
+
+      // password
       .state('password', {
         abstract: true,
         url: '/password',
@@ -122,6 +130,28 @@
         controllerAs: 'vm',
         data: {
           pageTitle: 'Password reset form'
+        }
+      })
+
+
+      // user profile
+      .state('profile', {
+        abstract: true,
+        url: '/profile',
+        templateUrl: 'modules/users/client/views/profile/profile.client.view.html',
+        controller: 'UserProfileController',
+        controllerAs: 'vm',
+        data: {
+          roles: ['user', 'admin']
+        }
+      })
+      .state('profile.user', {
+        url: '/user',
+        templateUrl: 'modules/users/client/views/profile/profile.client.view.html',
+        controller: 'UserProfileController',
+        controllerAs: 'vm',
+        data: {
+          roles: ['user', 'admin']
         }
       });
   }
