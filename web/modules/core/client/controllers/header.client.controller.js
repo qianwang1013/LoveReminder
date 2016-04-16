@@ -16,6 +16,12 @@
 
     $scope.$on('$stateChangeSuccess', stateChangeSuccess);
 
+    if (vm.authentication.user) {
+      $('.button-collapse').sideNav({
+        closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
+      });
+    }
+
     $('.fixed-action-btn').openFAB();
     $('.fixed-action-btn').closeFAB();
 

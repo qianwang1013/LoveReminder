@@ -43,6 +43,7 @@
 
         // And redirect to the previous or home page
         $state.go($state.previous.state.name || 'home', $state.previous.params);
+        Materialize.toast('Welcome to Kairos!', 5000, 'rounded'); // eslint-disable-line no-undef
       }).error(function (response) {
         vm.error = response.message;
       });
@@ -67,6 +68,7 @@
 
         // And redirect to the previous or home page
         $state.go($state.previous.state.name || 'home', $state.previous.params);
+        Materialize.toast('Welcome ' + vm.authentication.user.displayName + '!', 5000, 'rounded'); // eslint-disable-line no-undef
       }).error(function (response) {
         vm.error = response.message;
       });
