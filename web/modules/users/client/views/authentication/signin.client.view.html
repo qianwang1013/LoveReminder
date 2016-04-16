@@ -1,29 +1,35 @@
 <div>
-  <h3 class="col-md-12 text-center">Or sign in with your account</h3>
-  <div class="col-xs-offset-2 col-xs-8 col-md-offset-4 col-md-4">
-    <form name="vm.userForm" ng-submit="vm.signin(vm.userForm.$valid)" class="signin" novalidate autocomplete="off">
+  <div class="col-xs-offset-1 col-xs-8 col-md-offset-4 col-md-4" style="margin-top: 100px; width: 80%">
+    <form name="vm.userForm" ng-submit="vm.signin(vm.userForm.$valid)" class="signin" novalidate autocomplete="off" style="background-color: #6453B3;">
       <fieldset>
         <div class="form-group" show-errors>
-          <label for="username">Username</label>
-          <input type="text" id="username" name="username" class="form-control" ng-model="vm.credentials.username" placeholder="Username" lowercase required>
-          <div ng-messages="vm.userForm.username.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Username is required.</p>
+          <div class="input-field col s12">
+            <i class="material-icons prefix md-light">bubble_chart</i>
+            <input id="username" type="text" class="validate" name="username" ng-model="vm.credentials.username" lowercase required>
+            <label for="username">Username</label>
+          </div>
+          <div style="margin-left: 50px;" ng-messages="vm.userForm.username.$error" role="alert">
+            <p class="help-block error-text" style="color: #FF6633;" ng-message="required">Username is required.</p>
           </div>
         </div>
         <div class="form-group" show-errors>
-          <label for="password">Password</label>
-          <input type="password" id="password" name="password" class="form-control" ng-model="vm.credentials.password" placeholder="Password" required>
-          <div ng-messages="vm.userForm.password.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Password is required.</p>
+          <div class="input-field col s12">
+            <i class="material-icons prefix md-light">vpn_key</i>
+            <input id="password" type="password" class="validate" name="password" ng-model="vm.credentials.password" uib-popover="{{vm.getPopoverMsg()}}" uib-popover-trigger="focus" password-validator required>
+            <label for="password">Password</label>
+          </div>
+          <div style="margin-left: 50px;" ng-messages="vm.userForm.password.$error" role="alert">
+            <p class="help-block error-text" style="color: #FF6633;" ng-message="required">Password is required.</p>
           </div>
         </div>
         <div class="text-center form-group">
-          <button type="submit" class="btn btn-primary">Sign in</button>
-          &nbsp; or&nbsp;
-          <a ui-sref="authentication.signup">Sign up</a>
+          <div class="row text-center">
+            <button type="submit" class="btn" style="background-color: #1b4092;">Sign In</button>
+          </div>
+          <a ui-sref="authentication.signup" style="color: white;">Or Go to <u>Sign Up</u></a>
         </div>
         <div class="text-center forgot-password">
-          <a ui-sref="password.forgot">Forgot your password?</a>
+          <a ui-sref="password.forgot" style="color: white;"><u>Forgot Your Password?</u></a>
         </div>
         <uib-alert type="danger" ng-show="vm.error" class="text-center text-danger">
           <span ng-bind="vm.error"></span>

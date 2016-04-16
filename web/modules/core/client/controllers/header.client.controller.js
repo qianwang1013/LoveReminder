@@ -14,10 +14,8 @@
     vm.isCollapsed = false;
     vm.menu = menuService.getMenu('topbar');
 
-    console.log(vm.authentication.user + 'here');
     $scope.$on('$stateChangeSuccess', stateChangeSuccess);
 
-    $('.button-collapse').sideNav();
     $('.fixed-action-btn').openFAB();
     $('.fixed-action-btn').closeFAB();
 

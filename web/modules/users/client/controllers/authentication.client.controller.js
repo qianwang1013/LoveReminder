@@ -23,7 +23,6 @@
     if (vm.authentication.user) {
       $location.path('/');
     }
-    console.log(vm.authentication.user + 'user');
 
     function signup(isValid) {
       vm.error = null;
@@ -37,13 +36,15 @@
       $http.post('/api/auth/signup', vm.credentials).success(function (response) {
         // If successful we assign the response to the global user model
         vm.authentication.user = response;
-        console.log(response);
+
+        $('.button-collapse').sideNav({
+          closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
+        });
 
         // And redirect to the previous or home page
         $state.go($state.previous.state.name || 'home', $state.previous.params);
       }).error(function (response) {
         vm.error = response.message;
-        console.log(response);
       });
     }
 
@@ -59,6 +60,10 @@
       $http.post('/api/auth/signin', vm.credentials).success(function (response) {
         // If successful we assign the response to the global user model
         vm.authentication.user = response;
+
+        $('.button-collapse').sideNav({
+          closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
+        });
 
         // And redirect to the previous or home page
         $state.go($state.previous.state.name || 'home', $state.previous.params);
