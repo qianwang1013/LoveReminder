@@ -3,7 +3,7 @@
     <div class="nav-wrapper indigo darken-4">
       <a ui-sref="home" class="brand-logo waves-effect waves-light logo-text">kairos</a>
       <div>
-        <a href="#" data-activates="mobile-demo" ng-show="vm.authentication.user" class="button-collapse"><i class="material-icons">menu</i></a>
+        <a href="#" data-activates="mobile-demo" ng-if="vm.authentication.user" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul class="side-nav" id="mobile-demo">
           <img ng-src="{{vm.authentication.user.profileImageURL}}" alt="{{vm.authentication.user.displayName}}" class="header-profile-image" />
           <li><a ui-sref="profile.user">My Profile</a></li>
