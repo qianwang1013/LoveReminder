@@ -1,3 +1,47 @@
 <section ng-controller="UserProfileController as vm">
-  <h2>UserProfile</h2>
+
+  <form style="background-color: #8F7FD8; height: 500px; margin-top: 40px; border-radius: 25px;">
+    <div class="row">
+      <div class="input-field col s6 offset-s3">
+        <input id="interest" type="text" class="validate" ng-model="vm.interest">
+        <label for="interest">About Me</label>
+      </div>
+      {{interest}}
+    </div>
+    <div class="row text-center">
+      <a class="waves-effect waves-light btn"  ng-click="vm.addInterest()"><i class="material-icons left">edit</i>Add Interest</a>
+    </div>
+
+    <div class="divider"></div>
+
+    <div ng-repeat="interest in vm.user.userInterest" style="margin-top: 30px;">
+      <div ng-if="$index % 6 == 0">
+        <div class="chip" style="margin-bottom: 5px;" ng-if="$index < vm.user.userInterest.length">
+          {{vm.user.userInterest[$index]}}
+          <i class="material-icons" ng-click="vm.removeInterest($index);">close</i>
+        </div>
+        <div class="chip" style="margin-bottom: 5px;" ng-if="$index+1 < vm.user.userInterest.length">
+          {{vm.user.userInterest[$index+1]}}
+          <i class="material-icons" ng-click="vm.removeInterest($index+1);">close</i>
+        </div>
+        <div class="chip" style="margin-bottom: 5px;" ng-if="$index+2 < vm.user.userInterest.length">
+          {{vm.user.userInterest[$index+2]}}
+          <i class="material-icons" ng-click="vm.removeInterest($index+2);">close</i>
+        </div>
+        <div class="chip" style="margin-bottom: 5px;" ng-if="$index+3 < vm.user.userInterest.length">
+          {{vm.user.userInterest[$index+3]}}
+          <i class="material-icons" ng-click="vm.removeInterest($index+3);">close</i>
+        </div>
+        <div class="chip" style="margin-bottom: 5px;" ng-if="$index+4 < vm.user.userInterest.length">
+          {{vm.user.userInterest[$index+4]}}
+          <i class="material-icons" ng-click="vm.removeInterest($index+4);">close</i>
+        </div>
+        <div class="chip" style="margin-bottom: 5px;" ng-if="$index+5 < vm.user.userInterest.length">
+          {{vm.user.userInterest[$index+5]}}
+          <i class="material-icons" ng-click="vm.removeInterest($index+5);">close</i>
+        </div>
+      </div>
+    </div>
+  </form>
+
 </section>

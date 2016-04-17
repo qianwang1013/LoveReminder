@@ -8,6 +8,9 @@
           <img ng-src="{{vm.authentication.user.profileImageURL}}" alt="{{vm.authentication.user.displayName}}" class="header-profile-image" />
           <li><a ui-sref="profile.user">My Profile</a></li>
           <li><a ui-sref="settings.profile">Settings</a></li>
+          <li style="color: red;">
+            {{vm.authentication.user._id}}
+          </li>
           <li><a href="/api/auth/signout" target="_self">Sign Out</a></li>
         </ul>
       </div>

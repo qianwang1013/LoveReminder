@@ -66,6 +66,7 @@
           closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
         });
 
+        console.log(response);
         // And redirect to the previous or home page
         $state.go($state.previous.state.name || 'home', $state.previous.params);
         Materialize.toast('Welcome ' + vm.authentication.user.displayName + '!', 5000, 'rounded'); // eslint-disable-line no-undef
