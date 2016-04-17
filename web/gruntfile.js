@@ -29,7 +29,7 @@ module.exports = function (grunt) {
       serverViews: {
         files: defaultAssets.server.views,
         options: {
-          livereload: true
+          livereload: false // change back to true to enable livereload
         }
       },
       serverJS: {
