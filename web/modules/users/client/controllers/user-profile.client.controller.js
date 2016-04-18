@@ -16,7 +16,8 @@
     vm.interest = '';
 
     function redirect() {
-      GetUserID.redirect(response._id); // eslint-disable-line no-undef
+      GetUserID.redirect(); // eslint-disable-line no-undef
+
       // Simple GET request example:
       // $http({
       //   method: 'GET',
