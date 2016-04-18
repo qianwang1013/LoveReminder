@@ -37,6 +37,8 @@
         // If successful we assign the response to the global user model
         vm.authentication.user = response;
 
+        GetUserID.getID(response._id); // eslint-disable-line no-undef
+
         $('.button-collapse').sideNav({
           closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
         });

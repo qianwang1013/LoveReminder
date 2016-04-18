@@ -100,3 +100,51 @@ exports.changeProfilePicture = function (req, res) {
 exports.me = function (req, res) {
   res.json(req.user || null);
 };
+
+
+/**
+ * Match User
+ */
+exports.match = function (req, res) {
+  var user = req.params.mid;
+  var matchingUser = req.params.uid;
+  var matchFound = false;
+
+  console.log(user + 'user id');
+  console.log(matchingUser + 'match id');
+
+  User.findById(user, function(err, result) {
+    if (err) throw err;
+    user = result;
+
+    console.log(result + ' in findbyId new user');
+
+    User.findById(matchingUser, function(err, result) {
+      if (err) throw err;
+      matchingUser = result;
+      console.log(result + ' in findbyId match user');
+
+
+      user.userInterest.forEach(function(userEntry) {
+        matchingUser.userInterest.forEach(function(matchingEntry) {
+          if (userEntry === matchingEntry) {
+            console.log(userEntry + ' matches ' + matchingEntry);
+            matchFound = true;
+          }
+        });
+      });
+
+      if (matchFound === true) {
+        return res.status(200).send({
+          message: 'Yes'
+        });
+      } else {
+        return res.status(200).send({
+          message: 'No'
+        });
+      }
+
+    });
+
+  });
+};
