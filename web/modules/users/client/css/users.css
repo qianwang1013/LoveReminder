@@ -34,3 +34,8 @@
   min-height: 150px;
   max-height: 150px;
 }
+
+.custom{
+  font-size: 70px;
+  color: white;
+}

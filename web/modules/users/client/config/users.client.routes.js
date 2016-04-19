@@ -133,6 +133,11 @@
         }
       })
 
+      .state('match', {
+        url: '/user/match/:uid',
+        templateUrl: 'modules/users/client/views/profile/match.client.view.html',
+        controller: 'MatchUserProfileController'
+      })
 
       // user profile
       .state('profile', {

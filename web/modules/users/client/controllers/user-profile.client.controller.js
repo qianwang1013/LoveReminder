@@ -5,15 +5,23 @@
     .module('users')
     .controller('UserProfileController', UserProfileController);
 
-  UserProfileController.$inject = ['$scope', '$state', '$http', 'UsersService', 'Authentication'];
+  UserProfileController.$inject = ['$scope', '$state', '$http', 'UsersService', 'AdminService', 'Authentication'];
 
-  function UserProfileController($scope, $state, $http, UsersService, Authentication) {
+  function UserProfileController($scope, $state, $http, UsersService, AdminService, Authentication) {
     var vm = this;
     vm.user = UsersService.me();
+    vm.matchedUser = matchedUser;
     vm.addInterest = addInterest;
     vm.removeInterest = removeInterest;
     vm.redirect = redirect;
     vm.interest = '';
+
+    function matchedUser() {
+      var match = new AdminService();
+      vm.displayMatchedUser = match.get({userId: '@id'}, function(){
+        console.log(vm.displayMatchedUser);
+      })
+    }
 
     function redirect() {
       GetUserID.redirect(); // eslint-disable-line no-undef
@@ -47,7 +55,7 @@
         vm.error = response.data.message;
       });
     }
-
+    
     function removeInterest(index) {
       var user = new UsersService(vm.user);
       user.userInterest.splice(index, 1);

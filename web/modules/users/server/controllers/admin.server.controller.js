@@ -70,6 +70,18 @@ exports.list = function (req, res) {
   });
 };
 
+exports.getUserProfile = function(req, res) {
+  User.findOne({ '_id' : req.body._id}).exec(function (err, user) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+
+    res.json(user);
+  });
+};
+
 /**
  * User middleware
  */

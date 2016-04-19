@@ -3,6 +3,8 @@
 module.exports = function (app) {
   // User Routes
   var users = require('../controllers/users.server.controller');
+  var admin = require('../controllers/admin.server.controller');
+
 
   // Setting up the users profile api
   app.route('/api/users/me').get(users.me);
@@ -15,5 +17,5 @@ module.exports = function (app) {
   app.param('userId', users.userByID);
 
   app.route('/api/users/match/:mid/:uid').get(users.match);
-
+  app.route('/api/users/getUserProfile').post(admin.getUserProfile);
 };
